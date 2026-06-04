@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   async rewrites() {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+    const apiBase =
+      process.env.NEXT_PUBLIC_API_URL ||
+      "https://pritamdeka-belfastbuild-backend.hf.space";
+
     return [
       { source: "/api/:path*", destination: `${apiBase}/api/:path*` },
     ];
