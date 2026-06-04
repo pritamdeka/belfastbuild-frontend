@@ -113,6 +113,14 @@ export default function HomePage() {
       }
       const data = (await res.json()) as ScreenResponse;
       setResult(data);
+	  
+	  setTimeout(() => {
+	  document.getElementById("results")?.scrollIntoView({
+		behavior: "smooth",
+		block: "start",
+	  });
+	}, 100);
+	  
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "The request failed unexpectedly.";
