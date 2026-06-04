@@ -160,19 +160,24 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
-        <button
-          type="button"
+        <a
           className={styles.brand}
-          onClick={() => scrollToSection("top")}
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("top");
+          }}
         >
           <span className={styles.brandMark} aria-hidden>
             B.B
           </span>
           <span className={styles.brandText}>
             <span className="serif">BelfastBuild</span>
-            <span className={styles.brandKicker}>Planning compliance · RAG</span>
+            <span className={styles.brandKicker}>
+              Planning compliance · RAG
+            </span>
           </span>
-        </button>
+        </a>
 
         <nav className={styles.nav}>
           <button
