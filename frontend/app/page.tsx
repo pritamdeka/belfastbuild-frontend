@@ -46,6 +46,10 @@ const SAMPLE_PROMPTS = [
   "Detached garden-room outbuilding under 25 sqm for a home office.",
 ];
 
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://pritamdeka-belfastbuild-backend.hf.space";
+
 export default function HomePage() {
   const [postcode, setPostcode] = useState("BT9 7AG");
   const [description, setDescription] = useState(SAMPLE_PROMPTS[0]);
@@ -53,7 +57,6 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ScreenResponse | null>(null);
   const [backendState, setBackendState] = useState<BackendState>("checking");
-  const [backendModel, setBackendModel] = useState<string>("");
 
   const accent = useMemo(() => {
     if (!result) return "var(--accent)";
@@ -65,13 +68,12 @@ export default function HomePage() {
 
     async function checkBackend() {
       try {
-        const res = await fetch("/api/health", { cache: "no-store" });
+        const res = await fetch(`${API_BASE}/api/health`, { cache: "no-store" });
         if (!res.ok) {
           throw new Error(`Health check failed with status ${res.status}`);
         }
         const health = (await res.json()) as HealthResponse;
         if (cancelled) return;
-        setBackendModel(health.embedding_model);
         setBackendState(
           health.ready_for_screening ?? health.indexed ? "ready" : "checking",
         );
@@ -93,7 +95,7 @@ export default function HomePage() {
     setLoading(true);
     setResult(null);
     try {
-      const res = await fetch("/api/screen", {
+      const res = await fetch(`${API_BASE}/api/screen`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
