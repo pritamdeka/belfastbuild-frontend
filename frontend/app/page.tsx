@@ -569,10 +569,45 @@ function Footer() {
           </p>
         </div>
         <div className={styles.footerLinks}>
-          <a href="#top">Top</a>
-          <a href="#screen">Screen</a>
-          <a href="#results">Results</a>
-        </div>
+		  <button
+			type="button"
+			className={styles.navButton}
+			onClick={() =>
+			  document.getElementById("top")?.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			  })
+			}
+		  >
+			Top
+		  </button>
+
+		  <button
+			type="button"
+			className={styles.navButton}
+			onClick={() =>
+			  document.getElementById("screen")?.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			  })
+			}
+		  >
+			Screen
+		  </button>
+
+		  <button
+			type="button"
+			className={styles.navButton}
+			onClick={() =>
+			  document.getElementById("results")?.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			  })
+			}
+		  >
+			Results
+		  </button>
+		</div>
       </div>
       <p className={styles.footerFineprint}>
         Compliance scores are advisory; final determinations are made by the
