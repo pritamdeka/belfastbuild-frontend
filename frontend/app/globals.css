@@ -1,0 +1,131 @@
+/* ------------------------------------------------------------
+   BelfastBuild AI — global theme tokens
+   Two themes (light, dark) plus a "split" default view that
+   keeps the form on a light surface and the results panel on
+   a dark one. The toggle button in the header can pin the
+   whole page to a single theme.
+   ------------------------------------------------------------ */
+
+:root,
+[data-theme="light"] {
+  --bg: #f6f3ec;
+  --bg-elev: #ffffff;
+  --bg-soft: #efece4;
+  --ink: #1a1a1a;
+  --ink-soft: #4b4b4b;
+  --ink-mute: #7a7a7a;
+  --line: #d8d4c8;
+  --line-soft: #e6e2d6;
+  --accent: #2f5d50;
+  --accent-soft: #cfe1d9;
+  --gold: #a07b3a;
+  --good: #1f7a4d;
+  --good-soft: #d6ecdf;
+  --bad: #a8324a;
+  --bad-soft: #f4d9df;
+  --shadow: 0 10px 30px -16px rgba(20, 20, 20, 0.18);
+  --radius: 14px;
+  --radius-lg: 22px;
+  --serif: "Source Serif 4", "Iowan Old Style", "Georgia", serif;
+  --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+[data-theme="dark"] {
+  --bg: #0e1116;
+  --bg-elev: #161b22;
+  --bg-soft: #1c2230;
+  --ink: #ece6d6;
+  --ink-soft: #b8b2a0;
+  --ink-mute: #6e6a5e;
+  --line: #2a2f3a;
+  --line-soft: #232732;
+  --accent: #7fb8a9;
+  --accent-soft: #2c3a36;
+  --gold: #d2a05a;
+  --good: #4dbf8a;
+  --good-soft: #1d2e25;
+  --bad: #e07a8a;
+  --bad-soft: #2f1d22;
+  --shadow: 0 18px 50px -22px rgba(0, 0, 0, 0.7);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--ink); }
+
+button { font-family: inherit; cursor: pointer; }
+
+::selection { background: var(--accent-soft); color: var(--ink); }
+
+.serif { font-family: var(--serif); }
+.mono  { font-family: var(--mono); }
+.muted { color: var(--ink-mute); }
+.line  { border-color: var(--line); }
+
+/* ------------------------------------------------------------
+   Theme toggle
+   ------------------------------------------------------------ */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--accent); }
+.theme-toggle .swatch {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg) 0% 50%, var(--ink) 50% 100%);
+  border: 1px solid var(--line);
+}
+
+/* ------------------------------------------------------------
+   Subtle keyframes (less in-your-face than the legacy build)
+   ------------------------------------------------------------ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+@keyframes draw-ring {
+  from { stroke-dashoffset: var(--ring-len, 502); }
+  to   { stroke-dashoffset: var(--ring-fill, 502); }
+}
+@keyframes shimmer-soft {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

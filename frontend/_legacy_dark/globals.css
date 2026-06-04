@@ -1,0 +1,99 @@
+:root {
+  --ink-900: #050816;
+  --ink-800: #0b132b;
+  --ink-700: #1c2541;
+  --ink-600: #3a506b;
+  --ink-500: #5bc0be;
+  --ink-300: #8da9c4;
+  --ink-200: #c0d6df;
+  --emerald-500: #10b981;
+  --emerald-400: #34d399;
+  --rose-500: #f43f5e;
+  --rose-400: #fb7185;
+  --amber-500: #f59e0b;
+  --paper: rgba(255, 255, 255, 0.04);
+  --paper-strong: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 30px 80px -20px rgba(8, 13, 35, 0.65);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(91, 192, 190, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(244, 63, 94, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--ink-900) 0%, var(--ink-800) 100%);
+  color: var(--ink-200);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ink-500);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--ink-200);
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(91, 192, 190, 0.4);
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.glass {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  background: var(--paper-strong);
+  border: 1px solid var(--border);
+  color: var(--ink-200);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
