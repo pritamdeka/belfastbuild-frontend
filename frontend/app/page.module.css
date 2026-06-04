@@ -116,6 +116,23 @@
 }
 .nav a:hover { color: var(--ink); }
 
+
+.navButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.navButton:hover {
+  color: var(--ink);
+}
+
+
+
+
 /* ------------------------------------------------------------
    Hero
    ------------------------------------------------------------ */
@@ -596,6 +613,6 @@
 @media (max-width: 640px) {
   .form { grid-template-columns: 1fr; padding: 1.4rem; }
   .nav { gap: 0.8rem; }
-  .nav a:not(.theme-toggle) { display: none; }
+  .navButton { display: none; }
   .brandKicker { display: none; }
 }

@@ -150,10 +150,21 @@ export default function HomePage() {
 }
 
 function Header() {
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
-        <a className={styles.brand} href="#top">
+        <button
+          type="button"
+          className={styles.brand}
+          onClick={() => scrollToSection("top")}
+        >
           <span className={styles.brandMark} aria-hidden>
             B.B
           </span>
@@ -161,11 +172,33 @@ function Header() {
             <span className="serif">BelfastBuild</span>
             <span className={styles.brandKicker}>Planning compliance · RAG</span>
           </span>
-        </a>
+        </button>
+
         <nav className={styles.nav}>
-          <a href="#screen">Screen</a>
-          <a href="#sources">Sources</a>
-          <a href="#about">About</a>
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={() => scrollToSection("screen")}
+          >
+            Screen
+          </button>
+
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={() => scrollToSection("sources")}
+          >
+            Sources
+          </button>
+
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={() => scrollToSection("about")}
+          >
+            About
+          </button>
+
           <ThemeToggle />
         </nav>
       </div>
